@@ -8,6 +8,7 @@
   </head>
 <body>
     
+<form method="post" action="resposta.php">
     <div class="mb-3">
         <label for="valor 1" class="form-label">Informe o primeiro valor</label>
         <input type="number" id="valor 1" name="valor 1" class="form-control" required="">
