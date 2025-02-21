@@ -9,8 +9,20 @@
 <body> 
     <h1>resposta</h1>       
     <?php
-        $valor1 = $_POST['valor 1'];
-        $valor2 = $_POST['valor2'];
+    if ($SERVER['REQUEST_METHOD'] == 'POST'){
+        try {
+            $valor1 = $_POST['valor 1'];
+            $valor2 = $_POST['valor2'];
+            $soma = $valor1 + $valor2;
+            echo "o valor é $soma";
+            $div = $valor1 / $valor2;
+            $mult = $valor1 * $valor2;
+            
+
+        } catch(Excepitiom $e){
+         echo $e->getMessage();   
+        }
+    }
     ?> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
