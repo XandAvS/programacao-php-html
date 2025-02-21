@@ -19,7 +19,7 @@
             $mult = $valor1 * $valor2;
             
 
-        } catch(Excepitiom $e){
+        } catch(Exception $e){
          echo $e->getMessage();   
         }
     }
