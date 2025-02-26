@@ -9,7 +9,7 @@
 <body> 
     <h1>resposta</h1>       
     <?php
-    if ($SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         try {
             $valor1 = $_POST['valor 1'];
             $valor2 = $_POST['valor2'];

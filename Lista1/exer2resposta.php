@@ -24,11 +24,11 @@
     </nav>   
     <h1>Exercício 2 REsposta</h1>
     <?php
-    if ($SERVER['REQUEST_METHOD'] == 'POST'){
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         try {
-            $valor1 = $_POST['valor 1'];
+            $valor1 = $_POST['valor1'];
             $valor2 = $_POST['valor2'];
-            $sob = $valor1 + $valor2;
+            $sob = $valor1 - $valor2;
             echo "o valor da subtração é: $sob";
             
             
