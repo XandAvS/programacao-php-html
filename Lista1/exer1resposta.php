@@ -71,15 +71,14 @@ if (isset($_POST['pesquisa_exercicio'])) {
                 try {
                     $valor1 = $_POST['valor1'];
                     $valor2 = $_POST['valor2'];
-                    $sob = $valor1 - $valor2;
-                    echo "o valor da subtração é: $sob";
+                    $soma = $valor1 + $valor2;
+                    echo "o valor da soma é: $soma";
                 } catch (Exception $e) {
                     echo $e->getMessage();
                 }
             }
             ?>
         </div>
-        <a href="exer<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
