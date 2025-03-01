@@ -75,12 +75,17 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>Conversão de Temperatura</h3>
-            <form method="post" action="exer6resposta.php">
-                <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe o primeiro valor</label>
-                    <input type="number" id="valor1" name="valor1" class="form-control" required="" placeholder="Informe em C°">
+            <h3>perimetro</h3>
+            <form method="post" action="exer10resposta.php">
+            <div class="mb-3">
+                    <label for="valor 1" class="form-label">Informe A Altura do retangulo</label>
+                    <input type="number" id="valor1" name="valor1" class="form-control" required="">
                 </div>
+                <div class="mb-3">
+                    <label for="valor2" class="form-label">informe A Largura do retangulo</label>
+                    <input type="number" id="valor2" name="valor2" class="form-control" required="">
+                </div>
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>
