@@ -4,7 +4,7 @@ $max_exercicios = 19; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "exer3.php")
-preg_match('/exer(\d+)\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
+preg_match('/exer(\d+)resposta\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
 
 $exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um número, usa ele, senão assume 1
 
@@ -75,19 +75,22 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>Descontos</h3>
-            <form method="post" action="exer16resposta.php">
-                <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe o valor do produto</label>
-                    <input type="number" step="0.01" id="valor1" name="valor1" class="form-control" required="">
-                </div>
-                <div class="mb-3">
-                    <label for="valor2" class="form-label">informe o porcentual do desconto</label>
-                    <input type="number" step="0.01" id="valor2" name="valor2" class="form-control" required="">
-                </div>
-
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
+            <h3>Área da Circumferencia</h3>
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                try {
+                        $peso = $_POST['valor1'];
+                        $altura = $_POST['valor2'];
+                        $calculo = $peso * ($altura **2 );
+                        echo "O IMC é: $calculo";
+                    }
+                      catch (Exception $e) {
+                    echo $e->getMessage();  
+                    }
+         
+                }
+            ?>
+        <a href="exer<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

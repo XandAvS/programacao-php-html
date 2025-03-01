@@ -1,6 +1,6 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 20; // Altere esse valor conforme necessário
+$max_exercicios = 19; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "exer3.php")
@@ -75,15 +75,15 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>Medias por notas</h3>
+            <h3>IMC</h3>
             <form method="post" action="exer15resposta.php">
                 <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe A nota 1 do aluno</label>
-                    <input type="number" id="valor1" name="valor1" class="form-control" required="">
+                    <label for="valor 1" class="form-label">Informe seu peso</label>
+                    <input type="number" step="0.01" id="valor1" name="valor1" class="form-control" required="" placeholder="0.0">
                 </div>
                 <div class="mb-3">
-                    <label for="valor2" class="form-label">informe A nota 2 valor</label>
-                    <input type="number" id="valor2" name="valor2" class="form-control" required="">
+                    <label for="valor2" class="form-label">informe sua altura</label>
+                    <input type="number" step="0.01" id="valor2" name="valor2" class="form-control" required="" placeholder="0.0">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Enviar</button>

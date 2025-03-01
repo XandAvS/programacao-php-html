@@ -1,16 +1,16 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 20; // Altere esse valor conforme necessário
+$max_exercicios = 19; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "exer3.php")
 preg_match('/exer(\d+)\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
 
-$exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um número, usa ele, senão assume 1
+$exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um número, usa ele, senão assume 20
 
 // Define os exercícios anterior e próximo
-$exercicio_anterior = max(1, $exercicio_atual - 1);
-$exercicio_proximo = $exercicio_atual + 1;
+$exercicio_anterior = max(1, 20 - 1);
+$exercicio_proximo = ($exercicio_atual >= $max_exercicios) ? 'fim' : $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
@@ -36,7 +36,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Exercício <?php echo $exercicio_atual; ?></title>
+    <title>Exercício Final</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -48,7 +48,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
                 aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="exer<?php echo $exercicio_atual; ?>.php">
+            <a class="navbar-brand" href="fim.php">
                 <img width="50" src="alexandre.png" alt="">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
@@ -57,10 +57,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
                         <a class="nav-link" href="exer<?php echo $exercicio_anterior; ?>.php">Exercício Anterior</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exer<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="exer<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
+                        <a class="nav-link" href="fim.php">Exercício Atual</a>
                     </li>
                 </ul>
 
@@ -74,17 +71,17 @@ if (isset($_POST['pesquisa_exercicio'])) {
     </nav>
     <div class="row">
         <div class="col-3 mx-auto">
-            <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <form method="post" action="exer2resposta.php">
+            <h2>Exercício 20</h2>
+            <h3>Velocidade Media</h3>
+            <form method="post" action="fimresposta.php">
                 <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe o primeiro valor</label>
-                    <input type="number" id="valor1" name="valor1" class="form-control" required="">
+                    <label for="valor 1" class="form-label">Informe a distancia percorrida</label>
+                    <input type="number" id="valor1" name="valor1" class="form-control" required="" placeholder="100 km">
                 </div>
                 <div class="mb-3">
-                    <label for="valor2" class="form-label">informe o segundo valor</label>
-                    <input type="number" id="valor2" name="valor2" class="form-control" required="">
+                    <label for="valor 1" class="form-label">Informe o tempo percorrido</label>
+                    <input type="number" id="valor2" name="valor2" class="form-control" required="" placeholder="12h">
                 </div>
-
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>

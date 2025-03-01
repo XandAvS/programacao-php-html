@@ -1,6 +1,6 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 20; // Altere esse valor conforme necessário
+$max_exercicios = 19; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "exer3.php")
@@ -10,7 +10,7 @@ $exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um
 
 // Define os exercícios anterior e próximo
 $exercicio_anterior = max(1, $exercicio_atual - 1);
-$exercicio_proximo = $exercicio_atual + 1;
+$exercicio_proximo = ($exercicio_atual >= $max_exercicios) ? 'fim' : $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
@@ -60,7 +60,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
                         <a class="nav-link" href="exer<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="exer<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
+                        <a class="nav-link" href="<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
                     </li>
                 </ul>
 
@@ -75,17 +75,12 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>Medias por notas</h3>
+            <h3>Dias para Horas</h3>
             <form method="post" action="exer19resposta.php">
                 <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe A nota 1 do aluno</label>
-                    <input type="number" id="valor1" name="valor1" class="form-control" required="">
+                    <label for="valor 1" class="form-label">Informe a quantidade de DIAs</label>
+                    <input type="number" id="valor1" name="valor1" class="form-control" required="" placeholder="365">
                 </div>
-                <div class="mb-3">
-                    <label for="valor2" class="form-label">informe A nota 2 valor</label>
-                    <input type="number" id="valor2" name="valor2" class="form-control" required="">
-                </div>
-
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </div>
