@@ -79,11 +79,13 @@ if (isset($_POST['pesquisa_exercicio'])) {
             try {
                 $numero1 = $_POST['numero1'];
                 $i = 1;
+                $soma = 0;
                 while($i <= $numero1){
                     echo "<p>Número: $i<p/>";
+                    $soma = $soma + $i;
                     $i++;
                 }
-
+                echo "A soma é: $soma";
             } catch (Exception $e) {
                 echo $e->getMessage();
             }

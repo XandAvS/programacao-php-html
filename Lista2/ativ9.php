@@ -14,7 +14,7 @@ $exercicio_proximo = $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
-    header("Location: ativFim.php");
+    header("Location: ativ10.php");
     exit();
 }
 
@@ -60,7 +60,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
                         <a class="nav-link" href="ativ<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="ativFim.php">Próximo Exercício</a>
+                        <a class="nav-link" href="ativ<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
                     </li>
                 </ul>
 

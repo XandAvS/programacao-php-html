@@ -14,7 +14,7 @@ $exercicio_proximo = $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
-    header("Location: ativFim.php");
+    header("Location: ativ10.php");
     exit();
 }
 

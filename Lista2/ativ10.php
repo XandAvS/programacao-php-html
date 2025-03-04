@@ -72,7 +72,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
-            <h3>Fatorial</h3>
+            <h3>Tabuada</h3>
             <form method="post" action="ativ<?php echo $exercicio_atual; ?>resposta.php">
                 <div class="mb-3">
                     <label for="valor1" class="form-label">1° Informe o Número Inicial</label>
