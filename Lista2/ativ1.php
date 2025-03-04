@@ -68,15 +68,15 @@ if (isset($_POST['pesquisa_exercicio'])) {
                 </form>
             </div>
         </div>
-    </nav> 
+    </nav>
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
-            <h3>Soma</h3> 
+            <h3>Menor Número</h3>
             <!-- quero fazer uma repetição para que não fique 7 
              formularios na tela e 
              sim um que troca com as informações-->
-            <form method="post" action="ativ1resposta.php">
+             <form method="post" action="ativ<?php echo $exercicio_atual; ?>resposta.php">
                 <div class="mb-3">
                     <label for="valor 1" class="form-label">1° Informe o primeiro valor</label>
                     <input type="number" id="valor1" name="valor1" class="form-control" required="">

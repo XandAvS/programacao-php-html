@@ -72,75 +72,90 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
-    <?php
-    try{
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            <?php
+            try {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-            $valor1 = $_POST["valor1"];
-            $valor2 = $_POST["valor2"];
-            $valor3 = $_POST["valor3"];
-            $valor4 = $_POST["valor4"];
-            $valor5 = $_POST["valor5"];
-            $valor6 = $_POST["valor6"];
-            $valor7 = $_POST["valor7"];
-            $menor = $valor1;
-            $input = "Input 1";
+                    $valor1 = $_POST["valor1"];
+                    $valor2 = $_POST["valor2"];
+                    $valor3 = $_POST["valor3"];
+                    $valor4 = $_POST["valor4"];
+                    $valor5 = $_POST["valor5"];
+                    $valor6 = $_POST["valor6"];
+                    $valor7 = $_POST["valor7"];
+                    $menor = $valor1;
+                    $input = "Input 1";
 
-            if ($valor2 < $menor)
-            { 
-                $menor = $valor2;
-                $input = "Input 2";
-            }
-            if ($valor3 < $menor)
-            {
-                $menor = $valor3;
-                $input = "Input 3";
-            }
-            if ($valor4 < $menor)
-            {
-                $menor = $valor4;
-                $input = "Input 4";
-            }
-            if ($valor5 < $menor)
-            {
-                $menor = $valor5;
-                $input = "Input 5";
-            } 
-            if ($valor6 < $menor)
-            {
-                $menor = $valor6;
-                $input = "Input 6";
-            } 
-            if ($valor7 < $menor)
-            {
-                $menor = $valor7;
-                $input = "Input 7";
-            } 
-                $menor = $valor7;
-    // aqui ja sabemos o menor de todos ai restam 6 numeros para organizar
-            for ($i = 0; $i < 6; $i++) {
-                if ($valor1 > $valor2) 
-                    { $provisorio = $valor1; $valor1 = $valor2; $valor2 = $provisorio; }
-                if ($valor2 > $valor3) 
-                    { $provisorio = $valor2; $valor2 = $valor3; $valor3 = $provisorio; }
-                if ($valor3 > $valor4) 
-                    { $provisorio = $valor3; $valor3 = $valor4; $valor4 = $provisorio; }
-                if ($valor4 > $valor5) 
-                    { $provisorio = $valor4; $valor4 = $valor5; $valor5 = $provisorio; }
-                if ($valor5 > $valor6) 
-                    { $provisorio = $valor5; $valor5 = $valor6; $valor6 = $provisorio; }
-                if ($valor6 > $valor7) 
-                    { $provisorio = $valor6; $valor6 = $valor7; $valor7 = $provisorio; }
+                    if ($valor2 < $menor) {
+                        $menor = $valor2;
+                        $input = "Input 2";
+                    }
+                    if ($valor3 < $menor) {
+                        $menor = $valor3;
+                        $input = "Input 3";
+                    }
+                    if ($valor4 < $menor) {
+                        $menor = $valor4;
+                        $input = "Input 4";
+                    }
+                    if ($valor5 < $menor) {
+                        $menor = $valor5;
+                        $input = "Input 5";
+                    }
+                    if ($valor6 < $menor) {
+                        $menor = $valor6;
+                        $input = "Input 6";
+                    }
+                    if ($valor7 < $menor) {
+                        $menor = $valor7;
+                        $input = "Input 7";
+                    }
+                    $menor = $valor7;
+                    // aqui ja sabemos o menor de todos ai restam 6 numeros para organizar
+                    for ($i = 0; $i < 6; $i++) {
+                        if ($valor1 > $valor2) {
+                            $provisorio = $valor1;
+                            $valor1 = $valor2;
+                            $valor2 = $provisorio;
+                        }
+                        if ($valor2 > $valor3) {
+                            $provisorio = $valor2;
+                            $valor2 = $valor3;
+                            $valor3 = $provisorio;
+                        }
+                        if ($valor3 > $valor4) {
+                            $provisorio = $valor3;
+                            $valor3 = $valor4;
+                            $valor4 = $provisorio;
+                        }
+                        if ($valor4 > $valor5) {
+                            $provisorio = $valor4;
+                            $valor4 = $valor5;
+                            $valor5 = $provisorio;
+                        }
+                        if ($valor5 > $valor6) {
+                            $provisorio = $valor5;
+                            $valor5 = $valor6;
+                            $valor6 = $provisorio;
+                        }
+                        if ($valor6 > $valor7) {
+                            $provisorio = $valor6;
+                            $valor6 = $valor7;
+                            $valor7 = $provisorio;
+                        }
+                    }
+
+                    echo "<h3 class='mt-4'>Menor número: <strong>$menor</strong> na posição $input</h3>";
+                    echo "<h4>Números ordenados:</h4> <p>$valor1, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7</p>";
+                }
+            } catch (Exception $e) {
+                echo $e->getMessage();
             }
 
-            echo "<h3 class='mt-4'>Menor número: <strong>$menor</strong> na posição $input</h3>";
-            echo "<h4>Números ordenados:</h4> <p>$valor1, $valor2, $valor3, $valor4, $valor5, $valor6, $valor7</p>";
-        } 
-    }catch (Exception $e) {
-        echo $e->getMessage();
-    }
-
-    ?>
+            ?>
+            <div>
+                <a href="ativ<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
