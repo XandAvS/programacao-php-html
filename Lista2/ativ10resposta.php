@@ -77,26 +77,23 @@ if (isset($_POST['pesquisa_exercicio'])) {
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
             <?php
             try {
-                $nome = $_POST['nome_produto'];
-                $preco = $_POST['preco'];
+                $numero1 = $_POST['numero1'];
+                $i = 1;
+                for ($i; $i <= 10; $i++) {
+                    $resultado = $numero1 * $i;  // posso fazer *=$i
+                    echo "<p>$numero1 X $i = $resultado<p/>"; // concatenação dos resultados
 
-                if ($preco > 100) {
-                        $desconto = $preco *  (15/100);
-                        $preco = $preco - $desconto;
-                        echo "<p>Produto com condições de desconto de 15%</p>";
-                        echo "<p>Produto: $nome R$:$preco</p>";
-                    }
-                else {
-                    echo "<p>Produto Cadastrado com Sucesso</p>";
-                    echo "<p>Produto $nome R$:$preco</p>";
+                    // estetica, coloca o x ao lado de cada numero
                 }
+                
+                
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
             ?>
             <div>
-            <a href="ativ<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
-        </div>
+                <a href="ativ<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
+            </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

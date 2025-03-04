@@ -1,6 +1,6 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 9; // Altere esse valor conforme necessário
+$max_exercicios = 10; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "ativ3.php")
@@ -82,7 +82,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
                     <input type="number" id="numero1" name="numero1" class="form-control" required="">
                 </div>
                 <div class="mb-3">
-                    <label for="valor2" class="form-label">2° Informe o preço do produto R$</label>
+                    <label for="valor2" class="form-label">2° Informe o Número 2</label>
                     <input type="number" id="numero2" name="numero2" class="form-control" required="">
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>

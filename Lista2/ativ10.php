@@ -1,10 +1,10 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 10; // Altere esse valor conforme necessário
+$max_exercicios = 10;// Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "ativ3.php")
-preg_match('/ativ(\d+)resposta\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
+preg_match('/ativ(\d+)\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
 
 $exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um número, usa ele, senão assume 1
 
@@ -14,7 +14,7 @@ $exercicio_proximo = $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
-    header("Location: ativFim.php");
+    header("Location: ativ10.php");
     exit();
 }
 
@@ -25,7 +25,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
         header("Location: ativ$numero_pesquisado.php"); // Redireciona para a página do exercício pesquisado
         exit();
     } elseif ($numero_pesquisado > $max_exercicios) {
-        header("Location: ativFim.php"); // Se o número for maior que o limite, vai para ativfim.php
+        header("Location: ativ10.php"); // Se o número for maior que o limite, vai para ativfim.php
         exit();
     }
 }
@@ -59,9 +59,6 @@ if (isset($_POST['pesquisa_exercicio'])) {
                     <li class="nav-item">
                         <a class="nav-link" href="ativ<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="ativ<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
-                    </li>
                 </ul>
 
                 <!-- Formulário de pesquisa em PHP -->
@@ -75,28 +72,14 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
-            <?php
-            try {
-                $nome = $_POST['nome_produto'];
-                $preco = $_POST['preco'];
-
-                if ($preco > 100) {
-                        $desconto = $preco *  (15/100);
-                        $preco = $preco - $desconto;
-                        echo "<p>Produto com condições de desconto de 15%</p>";
-                        echo "<p>Produto: $nome R$:$preco</p>";
-                    }
-                else {
-                    echo "<p>Produto Cadastrado com Sucesso</p>";
-                    echo "<p>Produto $nome R$:$preco</p>";
-                }
-            } catch (Exception $e) {
-                echo $e->getMessage();
-            }
-            ?>
-            <div>
-            <a href="ativ<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
-        </div>
+            <h3>Fatorial</h3>
+            <form method="post" action="ativ<?php echo $exercicio_atual; ?>resposta.php">
+                <div class="mb-3">
+                    <label for="valor1" class="form-label">1° Informe o Número Inicial</label>
+                    <input type="number" id="numero1" name="numero1" class="form-control" required="">
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
