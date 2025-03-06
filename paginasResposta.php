@@ -1,35 +1,9 @@
 <?php
-// Define o número máximo de exercícios
-$max_exercicios = 10; // Altere esse valor conforme necessário
 
-// Obtém o número do exercício atual a partir do nome do arquivo
-$arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "ativ3.php")
-preg_match('/ativ(\d+)resposta\.php/', $arquivo_atual, $matches); // Extrai o número do exercício
-
-$exercicio_atual = isset($matches[1]) ? (int)$matches[1] : 1; // Se encontrar um número, usa ele, senão assume 1
-
-// Define os exercícios anterior e próximo
-$exercicio_anterior = max(1, $exercicio_atual - 1);
-$exercicio_proximo = $exercicio_atual + 1;
-
-// Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
-if ($exercicio_atual > $max_exercicios) {
-    header("Location: ativFim.php");
-    exit();
-}
-
-// Verifica se o usuário fez uma pesquisa
-if (isset($_POST['pesquisa_exercicio'])) {
-    $numero_pesquisado = (int)$_POST['pesquisa_exercicio'];
-    if ($numero_pesquisado > 0 && $numero_pesquisado <= $max_exercicios) {
-        header("Location: ativ$numero_pesquisado.php"); // Redireciona para a página do exercício pesquisado
-        exit();
-    } elseif ($numero_pesquisado > $max_exercicios) {
-        header("Location: ativFim.php"); // Se o número for maior que o limite, vai para ativfim.php
-        exit();
-    }
-}
+declare(strict_types=1);
+//ativa as funções e variaveis com tipos definidos
 ?>
+
 <!doctype html>
 <html lang="pt">
 
@@ -54,9 +28,6 @@ if (isset($_POST['pesquisa_exercicio'])) {
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="ativ<?php echo $exercicio_anterior; ?>.php">Exercício Anterior</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="ativ<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
                     <li class="nav-item">
@@ -76,19 +47,30 @@ if (isset($_POST['pesquisa_exercicio'])) {
         <div class="col-3 mx-auto">
             <h2>Atividade <?php echo $exercicio_atual; ?></h2>
             <?php
-            try {
-                $numero1 = $_POST['numero1'];
-                $i = 1;
-                $soma = 0;
-                while ($i <= $numero1) {
-                    echo "<p>Número: $i<p/>";
-                    $soma = $soma + $i;
-                    $i++;
+            function verificaMes($mes)
+            {
+                switch ($mes) {
+                    case '1':
+                        echo "Janeiro"; # cde...
+                        break;
+
+                    default:
+                        echo"Informe valor adequado";# code...
+                        break;
                 }
-                echo "A soma é: $soma";
+            }
+            ?>
+            <?php
+            try {
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+                    $valor1 = intval($_POST["valor1"]);
+                    verificaMes($valor1);
+                }
             } catch (Exception $e) {
                 echo $e->getMessage();
             }
+
             ?>
             <div>
                 <a href="ativ<?php echo $exercicio_atual; ?>.php" class="btn btn-primary">Retornar</a>
