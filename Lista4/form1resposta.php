@@ -1,6 +1,6 @@
 <?php
 // Define o número máximo de exercícios
-$max_exercicios = 19; // Altere esse valor conforme necessário
+$max_exercicios = 7; // Altere esse valor conforme necessário
 
 // Obtém o número do exercício atual a partir do nome do arquivo
 $arquivo_atual = basename($_SERVER['PHP_SELF']); // Pega o nome do arquivo atual (ex: "exer3.php")
@@ -14,7 +14,7 @@ $exercicio_proximo = $exercicio_atual + 1;
 
 // Se o usuário tentar acessar um exercício maior que o limite, redireciona para fim.php
 if ($exercicio_atual > $max_exercicios) {
-    header("Location: fim.php");
+    header("Location: form$max_exercicios.php");
     exit();
 }
 
@@ -25,7 +25,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
         header("Location: form$numero_pesquisado.php"); // Redireciona para a página do exercício pesquisado
         exit();
     } elseif ($numero_pesquisado > $max_exercicios) {
-        header("Location: fim.php"); // Se o número for maior que o limite, vai para fim.php
+        header("Location: form$max_exercicios.php"); // Se o número for maior que o limite, vai para fim.php
         exit();
     }
 }

@@ -53,6 +53,9 @@ if (isset($_POST['pesquisa_exercicio'])) {
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                        <a class="nav-link" href="form<?php echo $exercicio_anterior; ?>.php">Exercício Anterior</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="form<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
@@ -72,7 +75,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>function Texto</h3>
+            <h3>Minusculo e Maiusculo</h3>
             <form method="post" action="form<?php echo $exercicio_atual; ?>resposta.php">
                 <div class="mb-3">
                     <label for="valor 1" class="form-label">Informe um Texto</label>
