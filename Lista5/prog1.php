@@ -73,7 +73,7 @@ if (isset($_POST['pesquisa_exercicio'])) {
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
             <h3>Lista 5 - Exercício <?php echo $exercicio_atual; ?> </h3>
-            <form method="post" action="prog<?php echo $exercicio_atual; ?>resposta.php">
+            <form method="post" action="">
                 <div class="mb-3">
                     <?php
                     for ($i = 0; $i < 5; $i++) : ?>
