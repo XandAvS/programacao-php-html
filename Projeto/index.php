@@ -13,6 +13,7 @@
         <div class="col-5 mt-5 mx-auto">
             <h1 class="mt-5 text-center">Sistema de controle</h1>
             <?php
+            require_once('conexao.php');
             if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 try {
                     $email = $_POST['email'];
