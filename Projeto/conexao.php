@@ -13,3 +13,10 @@ try{
     //die corta o resto da pagina se o erro houver
     die("Erro ao conectar com o banco!".$e->getMessage());
 }
+// no banco de dados
+//http://localhost/phpmyadmin/
+//vamos em Banco de Dados ou Base de dados
+// criamos o banco de dados
+// criaremos a nova tabela
+// primeiro atributo
+// id e marcar o auto incremento
