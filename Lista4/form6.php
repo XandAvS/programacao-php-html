@@ -75,11 +75,11 @@ if (isset($_POST['pesquisa_exercicio'])) {
     <div class="row">
         <div class="col-3 mx-auto">
             <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>function Texto</h3>
+            <h3>Ponto Flutuante</h3>
             <form method="post" action="form<?php echo $exercicio_atual; ?>resposta.php">
                 <div class="mb-3">
-                    <label for="valor 1" class="form-label">Informe um Texto</label>
-                    <input type="text" id="valor1" name="valor1" class="form-control" required="">
+                    <label for="p" class="form-label">Informe um Valor</label>
+                    <input type="number" step="0.01" id="p" name="p" class="form-control" required="" placeholder="">
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
