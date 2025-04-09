@@ -35,7 +35,6 @@ if (isset($_POST['pesquisa_exercicio'])) {
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercício <?php echo $exercicio_atual; ?></title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -44,15 +43,14 @@ if (isset($_POST['pesquisa_exercicio'])) {
 
     <nav class="navbar navbar-expand-lg navbar-light mb-5" style="background-color: #747373;">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03"
-                aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <a class="navbar-brand" href="prog<?php echo $exercicio_atual; ?>.php">
                 <img width="50" src="alexandre.png" alt="">
             </a>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                        <a class="nav-link" href="prog<?php echo $exercicio_anterior; ?>.php">Exercício Anterior</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="prog<?php echo $exercicio_atual; ?>.php">Exercício Atual</a>
                     </li>
@@ -60,8 +58,6 @@ if (isset($_POST['pesquisa_exercicio'])) {
                         <a class="nav-link" href="prog<?php echo $exercicio_proximo; ?>.php">Próximo Exercício</a>
                     </li>
                 </ul>
-
-                <!-- Formulário de pesquisa em PHP -->
                 <form class="d-flex" method="POST">
                     <input class="form-control me-2" type="number" name="pesquisa_exercicio" placeholder="Ir para exercício" min="1" required>
                     <button class="btn btn-outline-light" type="submit">Ir</button>
@@ -69,57 +65,69 @@ if (isset($_POST['pesquisa_exercicio'])) {
             </div>
         </div>
     </nav>
+
     <div class="row">
-        <div class="col-3 mx-auto">
-            <h2>Exercício <?php echo $exercicio_atual; ?></h2>
-            <h3>Lista 5 - Exercício <?php echo $exercicio_atual; ?> </h3>
-            <form method="post" action="">
-                <div class="mb-3">
-                    <?php
-                    for ($i = 0; $i < 5; $i++) : ?>
-                        <input type="text" id="nome" name="nome[]" class="form-control" required="" placeholder="Nome">
-                        <input type="text" id="tel" name="tel[]" class="form-control" required="" placeholder="Telefone">
-                        <br />
-                    <?php endfor; ?>
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-<?php
-            if ($_SERVER['REQUEST_METHOD'] == 'POST' ){
-                try{
-                    $nomes = $_POST['nome'];
-                    $tels = $_POST['tel'];
-                    $contatos = array();
-                    $telefones_usados = array();
+        <form method="post" action="">
+            <div class="row justify-content-center">
+                <h2 class="text-center">Exercício <?php echo $exercicio_atual; ?> - Itens com Imposto</h2>
+                <?php for ($i = 0; $i < 5; $i++): ?>
+                    <div class="col-md-2 mb-3">
+                        <div class="border p-3 rounded shadow-sm">
+                            <label>Nome do Item <?php echo $i + 1; ?>:</label>
+                            <input type="text" name="nome[]" class="form-control" required>
+                            <label>Preço:</label>
+                            <input type="number" name="preco[]" class="form-control" step="0.01" required>
+                        </div>
+                    </div>
+                <?php endfor; ?>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Aplicar Imposto</button>
+            </div>
+        </form>
 
-                    for ($i = 0; $i < count($nomes); $i++) {
-                        $nome = trim($nomes[$i]);
-                        $telefone = trim($tels[$i]);
+        <?php
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            try {
+                $nomes = $_POST['nome'];
+                $precos = $_POST['preco'];
 
-                        if (isset($contatos[$nome])) {
-                            echo "<p>Contato duplicado: $nome já foi adicionado.</p>";
-                            continue;
-                        }
-                        if (in_array($telefone, $telefones_usados)) {
-                            echo "<p>Telefone duplicado: $telefone já foi usado.</p>";
-                            continue;
-                        }
-                        $contatos[$nome] = $telefone;
-                        $telefones_usados[] = $telefone;
-                        }
-                        ksort($contatos);
-                        echo "<h4 class='mt-4'>Contatos Ordenados:</h4><ul class='list-group'>";
-                        foreach ($contatos as $nome => $telefone) {
-                            echo "<li class='list-group-item'>$nome: $telefone</li>";
-                        }
-                        echo "</ul>";
-                } catch (Exception $e){
-                    echo $e->getMessage();
+                $itens = [];
+
+                for ($i = 0; $i < 5; $i++) {
+                    $nome = trim($nomes[$i]);
+                    $preco = floatval($precos[$i]);
+
+                    if (isset($itens[$nome])) {
+                        echo "<p class='text-danger'>Item <strong>$nome</strong> já inserido! Ignorado.</p>";
+                        continue;
+                    }
+
+                    $preco_com_imposto = $preco * 1.15;
+
+                    $itens[$nome] = round($preco_com_imposto, 2);
                 }
+
+                // Ordenar por preço (valores)
+                asort($itens);
+
+                echo "<div class='col-6 mx-auto mt-4'>";
+                echo "<h4>Lista de Itens com Imposto (ordenada por preço):</h4>";
+                echo "<ul class='list-group'>";
+                foreach ($itens as $nome => $preco_final) {
+                    echo "<li class='list-group-item d-flex justify-content-between align-items-center'>
+                        <span>$nome</span>
+                        <span>R$ " . number_format($preco_final, 2, ',', '.') . "</span>
+                    </li>";
+                }
+                echo "</ul></div>";
+            } catch (Exception $e) {
+                echo "<p class='text-danger'>Erro: " . $e->getMessage() . "</p>";
             }
-?>
-        </div>
+        }
+        ?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
