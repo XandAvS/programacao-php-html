@@ -8,12 +8,14 @@
             $stmt = $pdo->query($sql);//falando para o banco fazer essa consulta
             return $stmt->fetchAll();// da consulta retorna todos os dados em forma de arrey
 
-            $categorias = retornaCategorias();
+            
         }catch (Exception $e){
             die("Erro ao consultar as categorias". $e->getMessage());
         }
+        
     }
-?>
+    $categoria = retornaCategorias();
+    ?>
 <h2>Categorias</h2>
 <a href="novo_produto.php" class="btn btn-success mb-3">Novo Registro</a>
 <table class="table table-hover table-striped">
@@ -26,7 +28,7 @@
     </thead>
     <tbody>
         <?php
-        foreach($categorias as $c): //vai percorrer as catecorias e a cada laço adiciona recebe o valor da variavel c
+        foreach($categoria as $c): //vai percorrer as catecorias e a cada laço adiciona recebe o valor da variavel c
         ?>
         <tr>
             <td><?= $c['id'];?></td>
