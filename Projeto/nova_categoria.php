@@ -9,19 +9,21 @@ require_once("cabecalho.php");
                 $sql = "INSERT INTO categoria (nome, descricao) values (?,?)";
                 $stmt = $pdo->prepare($sql);
                 if ($stmt->execute([$nome, $descricao])){
-                    header('location: categorias.php? cadastro = true');
+                    header('location: categorias.php?cadastro=true');
                 }
                 else{//'location (caminho)? (criação da variavel para retorno do status) 
-                    header('location: categorias.php? cadastro = false');
+                    header('location: categorias.php?cadastro=false');
                 }
         }catch (Exception $e){
             die("Erro ao inserir Categoria:" .$e->getMessage());
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $nome = $_POST['nome'];
-            $descricao = $_POST['descricao'];
-            inserirCategoria($nome, $descricao);
-        }
+       
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $nome = $_POST['nome'];
+        $descricao = $_POST['descricao'];
+        inserirCategoria($nome, $descricao);
     }
 
 ?>
