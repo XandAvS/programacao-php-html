@@ -1,5 +1,26 @@
 <?php
 require_once("cabecalho.php");
+
+function inserirProduto($nome, $descricao, $preco, $categoria){
+    //toda função tem que ter a conexão
+    require("conexao.php");
+    try{
+        $sql = "INSERT INTO produto (nome, descricao, preco, categoria_id)
+                VALUES (?, ?, ?, ?)";
+        $stmt = $pdo->prepare($sql);
+        if ($stmt->execute([$nome, $descricao, $preco, $categoria ]))////
+        //modo de escrever no banco
+    }
+}
+
+$categorias = retornaCategorias();
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $preco = $_POST['preco'];
+    $categoria = $_POST['categoria'];
+    inserirProduto($nome, $descricao, $preco, $categoria);
+}
 ?>
 <h2>Novo Produto</h2>
 <div class="row">
