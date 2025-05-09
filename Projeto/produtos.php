@@ -1,6 +1,7 @@
 <?php
 require_once("cabecalho.php");
 
+
 function retornaProdutos(){
     require("conexao.php");
     try{
