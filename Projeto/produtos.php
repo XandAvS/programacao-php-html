@@ -2,19 +2,21 @@
 require_once("cabecalho.php");
 
 
-function retornaProdutos(){
+function retornaProdutos()
+{
     require("conexao.php");
-    try{
+    try {
         $sql = "SELECT p.*, c.nome as nome_categoria  FROM produto p 
         INNER JOIN categoria c ON c.id = p.categoria_id";
-         //WHERE pessa muito no processamento do Banco, evitar para garantir o melhor desemoenho da aplicação
-         //a conexão entre a tabela categoria e em produto que recebe a chave extrangeira, e o inner join buscamos a união entre elas
+        //WHERE pessa muito no processamento do Banco, evitar para garantir o melhor desemoenho da aplicação
+        //a conexão entre a tabela categoria e em produto que recebe a chave extrangeira, e o inner join buscamos a união entre elas
         $stmt = $pdo->query($sql);
         return $stmt->fetchAll();
-    }catch(Exception $e){
+    } catch (Exception $e) {
         die("Erro ao consultar produtos: " . $e->getMessage());
     }
 }
+$produtos = retornaProdutos();
 ?>
 <!--CRIAMOS AS TABELAS NO GERADOR E ADICIONAMOS NA PAGINA QUE CORRESPONDE-->
 <!--PARA CADA TABELA 4 PAGINAS, TABELA, ADICIONAR, EDITAR, CONSULTAR-->
@@ -35,23 +37,23 @@ function retornaProdutos(){
 
         <tr>
             <?php
-                foreach($produtos as $p): //$p recebe a variavel a cada laço que passa,1,2,3 ...
-                    //mostragem do produto.
-            
+            foreach ($produtos as $p): //$p recebe a variavel a cada laço que passa,1,2,3 ...
+                //mostragem do produto.
+
             ?>
-            <td><?= $p['id'] ?></td>
-            <td><?= $p['nome'] ?></td>
-            <td><?= $p['descricao'] ?></td>
-            <td><?= $p['preco'] ?></td>
-            <td><?= $p['nome_categoria'] ?></td>
-            <td>
-                <a href="editar_produto.php" class="btn btn-warning">Editar</a>
-                <a href="consultar_produto.php" class="btn btn-info">Consultar</a>
-            </td>
+                <td><?= $p['id'] ?></td>
+                <td><?= $p['nome'] ?></td>
+                <td><?= $p['descricao'] ?></td>
+                <td><?= $p['preco'] ?></td>
+                <td><?= $p['nome_categoria'] ?></td>
+                <td>
+                    <a href="editar_produto.php?id=<?= $p['id'] ?>" class="btn btn-warning">Editar</a>
+                    <a href="consultar_produto.php?id=<?= $p['id'] ?>" class="btn btn-info">Consultar</a>
+                </td>
         </tr>
-        <?php 
+    <?php
             endforeach;
-        ?>
+    ?>
     </tbody>
 </table>
 

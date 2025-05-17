@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <input type="text" id="preco" name="preco" class="form-control" required="">
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3"><!--trazendo todas as categorias criando um select-->
         <label for="categoria" class="form-label">Categoria</label>
         <select id="categoria" name="categoria" class="form-select" required="">
             <?php
