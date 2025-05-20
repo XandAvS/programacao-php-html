@@ -48,5 +48,4 @@ if (!$_SESSION['acesso']) {
       </div>
     </div>
   </nav>
-
 <main class="container">
