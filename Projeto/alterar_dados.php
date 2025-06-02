@@ -36,12 +36,12 @@ function alterarDadosUsuario($nome, $email)
 }
 function alterarSenha($senhaAntiga, $novaSenha, $novaSenhaConfirm)
 {
-    require("conexao.ph");
+    require("conexao.php");
     try {
         if ($novaSenha == $novaSenhaConfirm) {
             $usuario = retornaDadosUsuario();
             if (password_verify($senhaAntiga, $usuario['senha'])) {
-                $sql = "UPDADE usuario SET senha = ? WHERE id = ?";
+                $sql = "UPDATE usuarios SET senha = ? WHERE id = ?";
                 $stmt = $pdo->prepare($sql);
                 $novaSenha = password_hash($novaSenha, PASSWORD_BCRYPT);
                 if ($stmt->execute([$novaSenha, $_SESSION['id']])) {
